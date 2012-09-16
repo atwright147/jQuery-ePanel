@@ -1,6 +1,6 @@
 /*!
-* jQuery Plugin v1.0.1
-* https://github.com/atwright147/jquery-accdn
+* jQuery Plugin v0
+* https://github.com/atwright147/jquery-epanel
 *
 * Copyright 2012, Andy Wright
 * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -27,41 +27,45 @@
 
 		return this.each(function() {
 
-			console.log(o);
-			this.click(function() {
-				parent_id = $(this).parent().attr('id');
-				content = $('#' + parent_id + ' .content');
-				if($(content).is(':visible')) {
-					$('#' + parent_id).removeClass('open').addClass('closed');
-					$.cookie(o.cookie_prefix + parent_id, 'closed');
+			$this   = $(this);
+			$header = $this.find('.header');
+			classes = o.open_class + ' ' + o.closed_class;
+
+			$header.click(function() {
+				$this = $(this);
+				console.log($this);
+				$content = $this.siblings('div.content');
+				console.log($this.toggleClass(classes));
+				if($content.is(':visible')) {
+					//$.cookie(o.cookie_prefix + $panel_id, o.closed_class);
 				} else {
-					$('#' + parent_id).removeClass('closed').addClass('open');
-					$.cookie(o.cookie_prefix + parent_id, 'open');
+					//$.cookie(o.cookie_prefix + $panel_id, o.open_class);
 				}
-				$(content).slideToggle();
-			});
+				$content.slideToggle();
+			}).css('cursor','pointer');
 			
 			// init panels
-			parent_id = $(this).attr('id');
-			content = $('#' + parent_id + ' .content');
-			switch($.cookie(o.cookie_prefix + parent_id)) {
+			//parent_id = $(this).attr('id');
+			//content = $('#' + parent_id + ' .content');
+			/*
+			switch($.cookie(o.cookie_prefix + $panel_id)) {
 				case 'closed':
-					$('#' + parent_id).removeClass('open').addClass('closed');
-					$(content).hide();
+					$header.toggleClass(o.open_class + ' ' + o.closed_class);
+					$content.hide();
 					break;
 
 				case 'open':
-					$('#' + parent_id).removeClass('closed').addClass('open');
+					$toggleClass(o.open_class + ' ' + o.closed_class);
 					break;
 
 				default:
-					console.log('hasClass: ' + $('#' + parent_id).hasClass('closed'));
-					if($('#' + parent_id).hasClass('closed')) {
-						$(content).hide();
+					//console.log('hasClass: ' + $('#' + parent_id).hasClass('closed'));
+					if($panel.hasClass('closed')) {
+						$content.hide();
 					}
 					break;
 			}
-
+			*/
 		});
 
 	};

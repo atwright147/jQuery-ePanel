@@ -16,56 +16,53 @@
 			'open_class'	: 'open',
 			'closed_class'	: 'closed',
 			'cookie_prefix'	: 'panel_',
-			//'cursor'		: 'pointer',
-			//'speed'			: 'fast',
-			//'easing'		: 'linear',
-			//'mode'			: 'class'  // class, hash, first
+			'cursor'		: 'pointer',
+			'speed'			: 'fast',
+			'easing'		: 'linear',
+			'mode'			: 'class'  // class, hash, first
 		}, options);
 
 		var o = settings;
-		//console.debug(settings);
+		var classes = o.open_class + ' ' + o.closed_class;
 
 		return this.each(function() {
 
 			$this   = $(this);
 			$header = $this.find('.header');
-			classes = o.open_class + ' ' + o.closed_class;
 
 			$header.click(function() {
-				$this = $(this);
-				console.log($this);
-				$content = $this.siblings('div.content');
-				console.log($this.toggleClass(classes));
+				$this     = $(this);
+				$content  = $this.siblings('div.content');
+				$panel_id = $(this).parent('div').attr('id');
+				$this.parent('div').toggleClass(classes);
 				if($content.is(':visible')) {
-					//$.cookie(o.cookie_prefix + $panel_id, o.closed_class);
+					$.cookie(o.cookie_prefix + $panel_id, o.closed_class);
 				} else {
-					//$.cookie(o.cookie_prefix + $panel_id, o.open_class);
+					$.cookie(o.cookie_prefix + $panel_id, o.open_class);
 				}
-				$content.slideToggle();
+				$content.slideToggle(o.speed, o.easing);
 			}).css('cursor','pointer');
 			
 			// init panels
-			//parent_id = $(this).attr('id');
-			//content = $('#' + parent_id + ' .content');
-			/*
+			$panel_id = '#' + $(this).attr('id');
+			$content = $($panel_id + ' .content');
+			console.log($header);
 			switch($.cookie(o.cookie_prefix + $panel_id)) {
 				case 'closed':
-					$header.toggleClass(o.open_class + ' ' + o.closed_class);
+					$header.toggleClass(classes);
 					$content.hide();
 					break;
 
 				case 'open':
-					$toggleClass(o.open_class + ' ' + o.closed_class);
+					$toggleClass(classes);
 					break;
 
 				default:
-					//console.log('hasClass: ' + $('#' + parent_id).hasClass('closed'));
-					if($panel.hasClass('closed')) {
+					if($this.hasClass('closed')) {
 						$content.hide();
 					}
 					break;
 			}
-			*/
 		});
 
 	};

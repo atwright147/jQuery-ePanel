@@ -31,7 +31,10 @@
 	<script type="text/javascript" src="jquery.epanel.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('.panel').epanel();
+			$('.panel').epanel({
+				'speed': 900,
+				'easing': 'easeOutBounce'
+			});
 		});
 	</script>
 </head>

@@ -36,25 +36,24 @@
 				$panel_id = $(this).parent('div').attr('id');
 				$this.parent('div').toggleClass(classes);
 				if($content.is(':visible')) {
-					$.cookie(o.cookie_prefix + $panel_id, o.closed_class);
+					jQuery.cookie(o.cookie_prefix + $panel_id, o.closed_class);
 				} else {
-					$.cookie(o.cookie_prefix + $panel_id, o.open_class);
+					jQuery.cookie(o.cookie_prefix + $panel_id, o.open_class);
 				}
 				$content.slideToggle(o.speed, o.easing);
 			}).css('cursor','pointer');
 			
 			// init panels
-			$panel_id = '#' + $(this).attr('id');
-			$content = $($panel_id + ' .content');
-			console.log($header);
+			$panel_id = $this.attr('id');
+			$content  = $this.children('div.content');
 			switch($.cookie(o.cookie_prefix + $panel_id)) {
 				case 'closed':
-					$header.toggleClass(classes);
+					$header.removeClass(o.open_class).addClass(o.closed_class);
 					$content.hide();
 					break;
 
 				case 'open':
-					$toggleClass(classes);
+					$header.removeClass(o.closed_class).addClass(o.open_class);
 					break;
 
 				default:

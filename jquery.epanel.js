@@ -36,9 +36,9 @@
 				$panel_id = $(this).parent('div').attr('id');
 				$this.parent('div').toggleClass(classes);
 				if($content.is(':visible')) {
-					jQuery.cookie(o.cookie_prefix + $panel_id, o.closed_class);
+					$.cookie(o.cookie_prefix + $panel_id, o.closed_class);
 				} else {
-					jQuery.cookie(o.cookie_prefix + $panel_id, o.open_class);
+					$.cookie(o.cookie_prefix + $panel_id, o.open_class);
 				}
 				$content.slideToggle(o.speed, o.easing);
 			}).css('cursor','pointer');
@@ -47,13 +47,13 @@
 			$panel_id = $this.attr('id');
 			$content  = $this.children('div.content');
 			switch($.cookie(o.cookie_prefix + $panel_id)) {
-				case 'closed':
-					$header.removeClass(o.open_class).addClass(o.closed_class);
+				case o.closed_class:
+					$this.removeClass(o.open_class).addClass(o.closed_class);
 					$content.hide();
 					break;
 
-				case 'open':
-					$header.removeClass(o.closed_class).addClass(o.open_class);
+				case o.open_class:
+					$this.removeClass(o.closed_class).addClass(o.open_class);
 					break;
 
 				default:

@@ -1,5 +1,5 @@
 /*!
-* jQuery Plugin v0
+* jQuery Plugin v0.9
 * https://github.com/atwright147/jquery-epanel
 *
 * Copyright 2012, Andy Wright

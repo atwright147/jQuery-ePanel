@@ -81,3 +81,5 @@ Pull requests are very welcome! Make sure your patches are well tested. Please c
 [Andy Wright](https://github.com/atwright147)
 
 *This readme is based on the readme by carhartl for his jquery-cookie plugin*
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/aef349fd427308cee9412530a3408977 "githalytics.com")](http://githalytics.com/atwright147/jQuery-ePanel)
